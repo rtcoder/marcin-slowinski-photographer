@@ -7,10 +7,19 @@
 </svelte:head>
 
 <section>
+<div id="top-section">
 
+</div>
 </section>
 
 <style>
+    #top-section{
+        background-image: url('images/full-img.png');
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-color: #000;
+        height: 100vh;
+    }
 </style>
 
 

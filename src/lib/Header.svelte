@@ -25,21 +25,17 @@
 </script>
 
 <header class={classname}>
-    <img src="images/profile-small.jpg" alt="logo" class="white-img">
-    <div class="name">Marcin Słowiński</div>
+    <a href="/">
+        <div class="left">
+            <img src="images/profile-small.jpg" alt="logo" class="white-img">
+            <div class="name">Marcin Słowiński</div>
+        </div>
+    </a>
     <nav>
         <ul class={menuState}>
-            <li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">O mnie</a></li>
-            <li>
-                <a sveltekit:prefetch href="/works">Realizacje</a>
-                <ul>
-                    <li>Sesje1</li>
-                    <li>Sesje1</li>
-                    <li>Sesje1</li>
-                    <li>Sesje1Sesje1Sesje1Sesje1Sesje1Sesje1</li>
-                </ul>
-            </li>
-            <li>
+            <li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Home</a></li>
+            <li class:active={$page.path === '/portfolio'}><a sveltekit:prefetch href="/portfolio">Portfolio</a></li>
+            <li class:active={$page.path === '/contact'}>
                 <a sveltekit:prefetch href="/contact">Kontakt</a>
             </li>
         </ul>
@@ -49,163 +45,162 @@
 
 
 <style>
-	header {
-		width: 100%;
-		height: 80px;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: stretch;
-		color: #ffffff;
-		position: fixed;
-		top: 0;
-		background: #161616;
-		transition: all 0.3s ease-in-out;
-		box-shadow: 0 0 1px 0 #fff;
-	}
+    header {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+        color: #ffffff;
+        position: fixed;
+        top: 0;
+        background: rgba(22, 22, 22, 0.9);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 1px 0 #fff;
+    }
 
-	.name {
-		display: none;
-		justify-content: center;
-		align-items: center;
-		color: #cccccc;
-		font-size: 20px;
-	}
+    .left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 
-	img {
-		transition: all 0.3s ease-in-out;
-		border-radius: 100px;
-		height: 70px;
-		margin: 5px;
-	}
+    .name {
+        justify-content: center;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 18px;
+        overflow: hidden;
+        max-width: 0;
+        white-space: nowrap;
+        transition: 0.5s max-width ease-in-out;
+        font-weight: 100;
+    }
 
-	header.small img {
-		height: 50px;
-	}
+    header.small .name {
+        max-width: 300px;
+    }
+
+    img {
+        transition: all 0.3s ease-in-out;
+        border-radius: 100px;
+        height: 70px;
+        margin: 5px;
+    }
+
+    header.small img {
+        height: 50px;
+    }
 
 
-	:global(a) {
-		color: inherit;
-		text-decoration: none;
-	}
+    :global(a) {
+        color: inherit;
+        text-decoration: none;
+    }
 
-	header.small {
-		height: 60px;
-		box-shadow: 0 0 10px 0 #414141;
-	}
+    header.small {
+        height: 60px;
+        box-shadow: 0 0 10px 0 #303030;
+    }
 
-	nav {
-		position: relative;
-	}
+    nav {
+        position: relative;
+    }
 
-	.hamburger {
-		width: 40px;
-		position: relative;
-		margin-right: 10px;
-		display: none;
-		cursor: pointer;
-	}
+    .hamburger {
+        width: 40px;
+        position: relative;
+        margin-right: 10px;
+        display: none;
+        cursor: pointer;
+    }
 
-	.hamburger:before,
-	.hamburger:after {
-		content: ' ';
-		position: absolute;
-		left: 0;
-		width: 40px;
-		height: 2px;
-		background: #fff;
-		transition: all 0.3s ease-in-out;
-	}
+    .hamburger:before,
+    .hamburger:after {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: #fff;
+        transition: all 0.3s ease-in-out;
+    }
 
-	.hamburger:before {
-		top: 30%;
-	}
+    .hamburger:before {
+        top: 30%;
+    }
 
-	.hamburger:after {
-		top: 60%;
-	}
+    .hamburger:after {
+        top: 60%;
+    }
 
-	.hamburger.cross:before {
-		top: 50%;
-		transform: rotate(45deg);
-	}
+    .hamburger.cross:before {
+        top: 50%;
+        transform: rotate(45deg);
+    }
 
-	.hamburger.cross:after {
-		top: 50%;
-		transform: rotate(-45deg);
-	}
+    .hamburger.cross:after {
+        top: 50%;
+        transform: rotate(-45deg);
+    }
 
-	nav, ul {
-		display: flex;
-		align-items: stretch;
-		background: inherit;
-		color: inherit;
-	}
+    nav, ul {
+        display: flex;
+        align-items: stretch;
+        color: inherit;
+    }
 
-	li {
-		margin: 5px 10px;
-		background: inherit;
-		cursor: pointer;
-		display: flex;
-		align-items: center;
-		color: inherit;
-	}
+    li {
+        margin: 5px 10px;
+        background: inherit;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: inherit;
+    }
 
-	li > * {
-		color: inherit;
-	}
+    li > a {
+        border-bottom: 2px solid transparent;
+    }
 
-	li > ul {
-		position: absolute;
-		top: 100%;
-		width: 100%;
-		left: 0;
-		max-height: 0;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-		transition: all 0.3s ease-in-out;
-	}
+    li.active > a {
+        border-bottom-color: white;
+    }
 
-	li:hover > ul {
-		max-height: 500px;
-	}
+    li > * {
+        color: inherit;
+    }
 
-	@media (max-width: 640px) {
-		.hamburger {
-			display: block;
-		}
+    @media (max-width: 640px) {
+        .hamburger {
+            display: block;
+        }
 
-		nav > ul {
-			flex-direction: column;
-			position: fixed;
-			right: 0;
-			width: 100%;
-			text-align: center;
-			height: 0;
-			overflow: hidden;
-			transition: height 0.3s ease-in-out;
-		}
+        nav > ul {
+            justify-content: center;
+            flex-direction: column;
+            position: fixed;
+            right: 0;
+            width: 100%;
+            text-align: center;
+            height: 0;
+            overflow: hidden;
+            background: #161616;
+            transition: height 0.3s ease-in-out;
+        }
 
-		nav > ul.visible {
-			height: 100vh;
-		}
+        nav > ul.visible {
+            height: 100vh;
+        }
 
-		li, li > a {
-			min-height: 30px;
-			flex-direction: column;
-		}
+        li, li > a {
+            min-height: 30px;
+            flex-direction: column;
+        }
 
-		nav > ul li > ul {
-			max-height: none;
-			position: relative;
-			top: 0;
-			color: #d1d1d1;
-			background: transparent;
-		}
-
-		.name {
-			display: flex;
-		}
-	}
+        .name {
+            display: flex;
+        }
+    }
 </style>
