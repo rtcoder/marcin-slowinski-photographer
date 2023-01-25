@@ -1,4 +1,11 @@
 @import url(roboto.css);
+@import url(font-awesome.css);
+
+:root {
+    --bg_color: #161616;
+    --font_color: #cecece;
+    --accent_color: #cc9c00;
+}
 
 * {
     margin: 0;
@@ -17,29 +24,11 @@ html {
 body {
     width: 100%;
     padding: 80px 0 0 0;
-    background: #161616;
-    color: #cecece;
+    background: var(--bg_color);
+    color: var(--font_color);
     font-family: Roboto, sans-serif;
 }
 
 section {
     padding: 15px;
-}
-
-h1 {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 25px;
-    position: relative;
-}
-
-h1:after {
-    content: " ";
-    width: 40px;
-    height: 2px;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translate(-50%, 0);
-    background: #cdcdcd;
 }

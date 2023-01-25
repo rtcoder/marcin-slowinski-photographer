@@ -2,7 +2,7 @@
     import {page} from '$app/stores';
     import {onMount} from "svelte";
 
-    export let classname: string;
+    let classname = '';
     let hamburgerState = 'basic';
     let menuState = ''
 
@@ -21,6 +21,13 @@
             menuState = menuState === 'visible' ? '' : 'visible';
             hamburgerState = hamburgerState === 'basic' ? 'cross' : 'basic';
         })
+
+        document.querySelector('ul').addEventListener('click', e => {
+            if (e.target.tagName.toLowerCase() === 'a') {
+                menuState = '';
+                hamburgerState = 'basic';
+            }
+        })
     });
 </script>
 
@@ -33,8 +40,12 @@
     </a>
     <nav>
         <ul class={menuState}>
-            <li class:active={$page.path === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-            <li class:active={$page.path === '/portfolio'}><a sveltekit:prefetch href="/portfolio">Portfolio</a></li>
+            <li class:active={$page.path === '/'}>
+                <a sveltekit:prefetch href="/">Home</a>
+            </li>
+            <li class:active={$page.path === '/about'}>
+                <a sveltekit:prefetch href="/about">O mnie</a>
+            </li>
             <li class:active={$page.path === '/contact'}>
                 <a sveltekit:prefetch href="/contact">Kontakt</a>
             </li>
@@ -58,6 +69,7 @@
         background: rgba(22, 22, 22, 0.9);
         transition: all 0.3s ease-in-out;
         box-shadow: 0 0 1px 0 #fff;
+        z-index: 1;
     }
 
     .left {
@@ -161,11 +173,12 @@
     }
 
     li > a {
+        padding: 5px;
         border-bottom: 2px solid transparent;
     }
 
     li.active > a {
-        border-bottom-color: white;
+        border-bottom-color: var(--accent_color);
     }
 
     li > * {
@@ -197,6 +210,15 @@
         li, li > a {
             min-height: 30px;
             flex-direction: column;
+            font-size: 40px;
+        }
+
+        li {
+            margin: 15px 0;
+        }
+
+        li > a {
+            border-bottom-width: 3px;
         }
 
         .name {

@@ -1,75 +1,108 @@
-<script context="module" lang="ts">
-    export const prerender = true;
+<script>
+    import {onMount} from 'svelte';
+    import {getDominantColor} from "@rtcoder/dominant-color";
+
+    const photos = [
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+        '/images/profile-small.jpg',
+    ];
+
+    onMount(() => {
+
+        const images = document.querySelectorAll('.photo');
+        images.forEach(image => {
+                const img = image.querySelector('img');
+                getDominantColor(img, {
+                    downScaleFactor: 1,
+                    skipPixels: 50,
+                    colorsPaletteLength: 5,
+                    paletteWithCountOfOccurrences: false,
+                    colorFormat: 'rgb',
+                    callback: (color, palette) => {
+                        console.log({color, palette});
+                        image.style.borderColor = color;
+                    }
+                });
+            }
+        );
+    });
 </script>
 
 <svelte:head>
-    <title>Marcin Słowiński - Fotograf</title>
+    <title>Portfolio</title>
 </svelte:head>
 
-<section id="top-section">
-    <div class="info">Marcin Słowiński - fotograf</div>
+<div class="categories">
+    <ul>
+        <li class="active">Wszystkie</li>
+        <li>Śluby</li>
+        <li>Portrety</li>
+        <li>Komunie</li>
+        <li>Chrzty</li>
+    </ul>
+</div>
+
+<section class="photos">
+    {#each photos as photo}
+        <div class="photo">
+            <img src="{photo}" alt="">
+        </div>
+    {/each}
 </section>
 
-<section>
-    <h1>O mnie</h1>
-    <p class="about-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Etiam in ultrices elit. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos.
-        Cras leo lacus, bibendum sed libero nec, accumsan accumsan
-        purus. Ut vel nisi eu nulla luctus pellentesque eu eget mauris.
-        Etiam elementum, nisl vel mollis laoreet, velit lacus fringilla
-        enim, ac convallis arcu est molestie orci. Integer sed
-        massa ipsum. Fusce quis auctor urna. Praesent imperdiet
-        lectus massa, ut molestie orci scelerisque eget.
-    </p>
-</section>
 <style>
-    #top-section {
-        background-image: url('images/bg.jpg');
-        background-size: auto 100%;
-        background-repeat: no-repeat;
-        background-color: #000;
-        height: calc(100vh - 80px);
+    .categories {
+        background-color: #0f0f0f;
+        padding: 10px 0;
+    }
+
+    ul {
         display: flex;
-        justify-content: flex-end;
         flex-direction: row;
+        justify-content: center;
+    }
+
+    li {
+        cursor: pointer;
+        padding: 5px 10px;
+        margin: 0 5px;
+    }
+
+    .photos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 20px 10px;
+        padding: 10px 15px;
+        width: 100%;
         align-items: center;
     }
 
-    .info {
-        padding-top: 20px;
-        width: 50%;
-        font-size: 35px;
-        font-weight: 100;
-        text-shadow: -1px 1px 0 #000,
-        1px 1px 0 #000,
-        1px -1px 0 #000,
-        -1px -1px 0 #000;
-        color: #fff;
+    .photo {
+        width: -webkit-fill-available;
+        aspect-ratio: 1/1;
+        justify-self: center;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 10px;
+        border: 2px solid;
     }
 
-    .about-text {
-        padding: 0 50px;
-        line-height: 1.7;
-        letter-spacing: 1px;
+    .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        pointer-events: none;
+        user-select: none;
     }
-
-    @media (max-width: 769px) {
-        .info {
-            padding-top: 200px;
-        }
-    }
-
-    @media (max-width: 550px) {
-        .info {
-            padding-top: 200px;
-            text-align: center;
-            width: 100%;
-        }
-    }
-
-
 </style>
-
-

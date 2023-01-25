@@ -1,50 +1,95 @@
-<script context="module">
-	import { browser, dev } from '$app/env';
-
-	// we don't need any JS on this page, though we'll load
-	// it in dev so that we get hot module replacement...
-	export const hydrate = dev;
-
-	// ...but if the client-side router is already loaded
-	// (i.e. we came here from elsewhere in the app), use it
-	export const router = browser;
-
-	// since there's no dynamic data here, we can prerender
-	// it so that it gets served as a static asset in prod
-	export const prerender = true;
+<script>
+    import Heading from "$lib/Heading.svelte";
+    import Icon from "$lib/Icon.svelte";
 </script>
 
 <svelte:head>
-	<title>About</title>
+    <title>About</title>
 </svelte:head>
 
-<div class="content">
-	<h1>About this app</h1>
+<section>
+    <Heading>Skontaktuj się ze mną</Heading>
 
-	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
-	</p>
+    <div class="contact-links">
 
-	<!-- TODO lose the @next! -->
-	<pre>npm init svelte@next</pre>
+        <a href="" class="link">
+            <div class="link-content">
+                <div class="icon">
+                    <Icon name="fa-brands fa-facebook-messenger"/>
+                </div>
+                <div class="text">
+                    m.me/link
+                </div>
+            </div>
+        </a>
 
-	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
-	</p>
+        <a href="tel:+48884048600" class="link">
+            <div class="link-content">
+                <div class="icon">
+                    <Icon name="fa-solid fa-phone"/>
+                </div>
+                <div class="text">884-048-600</div>
+            </div>
+        </a>
 
-	<p>
-		The <a href="/todos">TODOs</a> page illustrates SvelteKit's data loading and form handling. Try using
-		it with JavaScript disabled!
-	</p>
-</div>
+        <a href="mailto:slowik669@gmail.com" class="link">
+            <div class="link-content">
+                <div class="icon">
+                    <Icon name="fa-regular fa-at"/>
+                </div>
+                <div class="text">slowik669@gmail.com</div>
+            </div>
+        </a>
+    </div>
+
+</section>
 
 <style>
-	.content {
-		width: 100%;
-		max-width: var(--column-width);
-		margin: var(--column-margin-top) auto 0 auto;
-	}
+    .contact-links {
+        width: 100%;
+        max-width: 650px;
+        margin: 50px auto 0;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-gap: 20px 20px;
+        align-items: center;
+    }
+
+    .link {
+        justify-self: center;
+        cursor: pointer;
+    }
+
+    .link-content {
+        width: 300px;
+        height: 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        border: 2px solid;
+    }
+
+    .link-content .icon {
+        width: 70px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-right: 2px solid;
+    }
+
+    .link-content .text {
+        width: calc(100% - 70px);
+        height: 70px;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+    }
+
+    .link:hover .link-content {
+        color: var(--bg_color);
+        background: var(--accent_color);
+        border-color: var(--accent_color);
+    }
 </style>
