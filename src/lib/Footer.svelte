@@ -1,5 +1,6 @@
 <script>
-    import Icon from "$lib/Icon.svelte";
+    import Icon from '$lib/Icon.svelte';
+
     const year = new Date().getFullYear();
 </script>
 
@@ -18,7 +19,7 @@
 </footer>
 
 <style>
-    footer{
+    footer {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
@@ -26,13 +27,16 @@
         width: 100%;
         line-height: 2;
     }
-    .contact{
+
+    .contact {
         display: flex;
         flex-direction: column;
     }
-a:hover{
-    color: var(--accent_color);
-}
+
+    a:hover {
+        color: var(--accent_color);
+    }
+
     @media (max-width: 640px) {
         footer {
             flex-direction: column;

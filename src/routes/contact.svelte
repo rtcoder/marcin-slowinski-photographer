@@ -1,6 +1,6 @@
 <script>
-    import Heading from "$lib/Heading.svelte";
-    import Icon from "$lib/Icon.svelte";
+	import Heading from '$lib/Heading.svelte';
+	import Icon from '$lib/Icon.svelte';
 </script>
 
 <svelte:head>
@@ -11,15 +11,12 @@
     <Heading>Skontaktuj się ze mną</Heading>
 
     <div class="contact-links">
-
         <a href="" class="link">
             <div class="link-content">
                 <div class="icon">
                     <Icon name="fa-brands fa-facebook-messenger"/>
                 </div>
-                <div class="text">
-                    m.me/link
-                </div>
+                <div class="text">m.me/link</div>
             </div>
         </a>
 

@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
     export const prerender = true;
-    import Heading from "$lib/Heading.svelte";
+    import Heading from '$lib/Heading.svelte';
 </script>
 
 <svelte:head>
@@ -14,20 +14,22 @@
 <section>
     <Heading>O mnie</Heading>
     <p class="about-text">
-        Jestem profesjonalnym fotografem z wieloletnim doświadczeniem w różnych dziedzinach fotografii, takich jak
-        zdjęcia ślubne, rodzinne i okolicznościowe. Moje portfolio jest pełne różnorodnych projektów, które
-        pokazują moją elastyczność i umiejętność dostosowywania się do różnych potrzeb klientów.
-        <br>
-        <br>
-        Jestem specjalistgą, który zawsze dąży do perfekcji w swojej pracy. Posiadam wysokiej jakości sprzęt i
-        oprogramowanie, dzięki czemu jestem w stanie uchwycić każdy detal i przenieść emocje na zdjęciach.
-        <br>
-        <br>
-        Jestem również otwarty na współpracę i wszelkie sugestie klientów, aby zapewnić im jak najlepsze rezultaty. Moje
-        portfolio jest żywym dowodem na to, że mogę zaoferować najwyższą jakość usług fotograficznych i zapewnić
-        zadowolenie każdego klienta.
+        Jestem profesjonalnym fotografem z wieloletnim doświadczeniem w różnych dziedzinach fotografii,
+        takich jak zdjęcia ślubne, rodzinne i okolicznościowe. Moje portfolio jest pełne różnorodnych
+        projektów, które pokazują moją elastyczność i umiejętność dostosowywania się do różnych potrzeb
+        klientów.
+        <br/>
+        <br/>
+        Jestem specjalistgą, który zawsze dąży do perfekcji w swojej pracy. Posiadam wysokiej jakości sprzęt
+        i oprogramowanie, dzięki czemu jestem w stanie uchwycić każdy detal i przenieść emocje na zdjęciach.
+        <br/>
+        <br/>
+        Jestem również otwarty na współpracę i wszelkie sugestie klientów, aby zapewnić im jak najlepsze
+        rezultaty. Moje portfolio jest żywym dowodem na to, że mogę zaoferować najwyższą jakość usług fotograficznych
+        i zapewnić zadowolenie każdego klienta.
     </p>
 </section>
+
 <style>
     #top-section {
         background-image: url('images/bg.jpg');
@@ -45,10 +47,7 @@
         width: 50%;
         font-size: 35px;
         font-weight: 100;
-        text-shadow: -1px 1px 0 #000,
-        1px 1px 0 #000,
-        1px -1px 0 #000,
-        -1px -1px 0 #000;
+        text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
         color: #fff;
     }
 
@@ -71,8 +70,4 @@
             width: 100%;
         }
     }
-
-
 </style>
-
-

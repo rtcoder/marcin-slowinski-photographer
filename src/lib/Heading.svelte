@@ -1,5 +1,7 @@
 <div class="heading">
-    <h1><slot/></h1>
+    <h1>
+        <slot/>
+    </h1>
 </div>
 
 <style>
@@ -16,7 +18,7 @@
     }
 
     h1:after {
-        content: " ";
+        content: ' ';
         width: 50%;
         height: 2px;
         position: absolute;
