@@ -11,16 +11,16 @@
     <Heading>Skontaktuj się ze mną</Heading>
 
     <div class="contact-links">
-        <a href="" class="link">
+        <a href="https://m.me/100002383642052" class="link" target="_blank">
             <div class="link-content">
                 <div class="icon">
                     <Icon name="fa-brands fa-facebook-messenger"/>
                 </div>
-                <div class="text">m.me/link</div>
+                <div class="text">m.me/100002383642052</div>
             </div>
         </a>
 
-        <a href="tel:+48884048600" class="link">
+        <a href="tel:+48884048600" class="link" target="_blank">
             <div class="link-content">
                 <div class="icon">
                     <Icon name="fa-solid fa-phone"/>
@@ -29,7 +29,7 @@
             </div>
         </a>
 
-        <a href="mailto:slowik669@gmail.com" class="link">
+        <a href="mailto:slowik669@gmail.com" class="link" target="_blank">
             <div class="link-content">
                 <div class="icon">
                     <Icon name="fa-regular fa-at"/>
@@ -38,7 +38,6 @@
             </div>
         </a>
     </div>
-
 </section>
 
 <style>
