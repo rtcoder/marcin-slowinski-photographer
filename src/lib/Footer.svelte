@@ -23,9 +23,10 @@
         display: flex;
         justify-content: space-between;
         flex-direction: row;
-        padding: 10px;
+        padding: 10px 20px;
         width: 100%;
         line-height: 2;
+        border-top: 1px solid var(--accent_color);
     }
 
     .contact {

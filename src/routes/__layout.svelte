@@ -1,7 +1,7 @@
 <script lang="ts">
+    import Footer from '$lib/Footer.svelte';
     import Header from '$lib/Header.svelte';
     import '../app.css';
-    import Footer from '$lib/Footer.svelte';
 </script>
 
 <Header/>
@@ -19,5 +19,6 @@
         flex-direction: column;
         width: 100%;
         margin: 0 auto;
+        min-height: calc(100vh - 145px);
     }
 </style>
