@@ -1,11 +1,11 @@
-<script context="module" lang="ts">
-    export const prerender = true;
-    import Heading from '$lib/Heading.svelte';
-</script>
-
 <svelte:head>
     <title>Marcin Słowiński - Fotograf</title>
 </svelte:head>
+
+<script context="module" lang="ts">
+    export const prerender = true;
+    import Heading from '../../lib/Heading.svelte';
+</script>
 
 <section id="top-section">
     <div class="info">Marcin Słowiński - fotograf</div>

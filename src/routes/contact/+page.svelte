@@ -1,6 +1,6 @@
 <script>
-	import Heading from '$lib/Heading.svelte';
-	import Icon from '$lib/Icon.svelte';
+    import Heading from '$lib/Heading.svelte';
+    import Icon from '$lib/Icon.svelte';
 </script>
 
 <svelte:head>

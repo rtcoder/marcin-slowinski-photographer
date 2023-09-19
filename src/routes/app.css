@@ -1,5 +1,5 @@
-@import url(roboto.css);
-@import url(font-awesome.css);
+@import 'roboto.css';
+@import 'font-awesome.css';
 
 :root {
     --bg_color: #161616;
