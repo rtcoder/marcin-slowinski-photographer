@@ -15,6 +15,8 @@
     h1 {
         position: relative;
         color: #fff;
+        font-size: 30px;
+        text-align: center;
     }
 
     h1:after {
@@ -27,4 +29,11 @@
         transform: translate(-50%, 0);
         background: var(--accent_color);
     }
+
+    @media (max-width: 769px) {
+        h1 {
+            font-size: 35px;
+        }
+    }
+
 </style>

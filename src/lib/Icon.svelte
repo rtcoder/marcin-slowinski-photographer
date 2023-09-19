@@ -3,4 +3,4 @@
     export let size = '20';
 </script>
 
-<i class={name} style="font-size: {size}px"/>
+<i class={name} on:click style="font-size: {size}px"></i>

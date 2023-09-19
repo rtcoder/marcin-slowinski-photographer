@@ -20,7 +20,7 @@
         klientów.
         <br/>
         <br/>
-        Jestem specjalistgą, który zawsze dąży do perfekcji w swojej pracy. Posiadam wysokiej jakości sprzęt
+        Jestem specjalistą, który zawsze dąży do perfekcji w swojej pracy. Posiadam wysokiej jakości sprzęt
         i oprogramowanie, dzięki czemu jestem w stanie uchwycić każdy detal i przenieść emocje na zdjęciach.
         <br/>
         <br/>
@@ -52,7 +52,7 @@
     }
 
     .about-text {
-        padding: 0 50px;
+        padding: 50px;
         line-height: 1.7;
         letter-spacing: 1px;
     }
@@ -61,6 +61,10 @@
         .info {
             padding-top: 200px;
         }
+
+        .about-text {
+            font-size: 22px;
+        }
     }
 
     @media (max-width: 550px) {
@@ -68,6 +72,12 @@
             padding-top: 200px;
             text-align: center;
             width: 100%;
+        }
+
+        .about-text {
+            font-size: 25px;
+            padding-left: 30px;
+            padding-right: 30px;
         }
     }
 </style>

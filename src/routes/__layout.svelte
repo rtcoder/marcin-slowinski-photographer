@@ -21,4 +21,10 @@
         margin: 0 auto;
         min-height: calc(100vh - 145px);
     }
+
+    @media (max-width: 640px) {
+        main {
+            min-height: calc(100vh - 185px);
+        }
+    }
 </style>

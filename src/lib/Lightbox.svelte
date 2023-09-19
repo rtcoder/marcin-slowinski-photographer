@@ -1,33 +1,35 @@
 <script>
     import Icon from '$lib/Icon.svelte';
-    import {createEventDispatcher, onMount} from "svelte";
+    import {createEventDispatcher, onMount} from 'svelte';
 
     export let images = [];
+    export let title = '';
     export let lightboxDisplay = false;
 
     const dispatch = createEventDispatcher();
 
+    let photoIndex = 0;
     let containerWidth = 0;
     let wrapperWidth = 0;
-    let thumbnailsWrapperWidth = 0;
-    let transformWrapperXAxis = 0
+    let transformWrapperXAxis = 0;
     let transitionDurationWrapper = 0.3;
-    let photoIndex = 0;
     let touchStartPositionX = 0;
-    let touchMovePositionX = 0
-    let touchPositionXDiff = 0
+    let touchMovePositionX = 0;
+    let touchPositionXDiff = 0;
+    let thumbnailsWidth;
+    let thumbnailsContainerWidth;
 
     function closeLightbox() {
         dispatch('closeLightbox', {});
         lightboxDisplay = false;
         images = [];
         photoIndex = 0;
+        console.log(lightboxDisplay)
     }
 
     function onResize() {
         containerWidth = document.querySelector('.images-container').getBoundingClientRect().width;
         wrapperWidth = containerWidth * images.length;
-        thumbnailsWrapperWidth = 90 * images.length;
         transformWrapperXAxis = -(photoIndex * containerWidth);
     }
 
@@ -59,78 +61,73 @@
 
     }
 
+    function onKeyDown(e) {
+        if (!lightboxDisplay) {
+            return;
+        }
+        if (e.key === 'ArrowLeft') {
+            prevPhoto();
+        }
+        if (e.key === 'ArrowRight') {
+            nextPhoto();
+        }
+    }
+
+    function galleryTouchStart(e) {
+        touchStartPositionX = e.touches[0].pageX;
+    }
+
+    function galleryTouchEnd() {
+        transformWrapperXAxis = transformWrapperXAxis + touchPositionXDiff;
+        const newIndex = Math.abs(Math.round(transformWrapperXAxis / containerWidth));
+
+        touchMovePositionX = 0;
+        touchStartPositionX = 0;
+        touchPositionXDiff = 0;
+
+        transitionDurationWrapper = 0.3;
+
+        goToPhoto(newIndex);
+    }
+
+    function galleryTouchMove(e) {
+        touchMovePositionX = e.touches[0].pageX;
+
+        touchPositionXDiff = touchMovePositionX - touchStartPositionX;
+
+        if (transformWrapperXAxis + touchPositionXDiff > 50) {
+            touchPositionXDiff = 50;
+        }
+        if (transformWrapperXAxis + touchPositionXDiff < -wrapperWidth + containerWidth - 50) {
+            touchPositionXDiff = -50;
+        }
+
+        transitionDurationWrapper = 0;
+    }
+
     onMount(() => {
         onResize();
-
-        const images$ = document.querySelector('.images');
-
-        window.addEventListener("resize", onResize);
-        document.body.addEventListener("keydown", e => {
-            if (!lightboxDisplay) {
-                return;
-            }
-            if (e.key === 'ArrowLeft') {
-                prevPhoto();
-            }
-            if (e.key === 'ArrowRight') {
-                nextPhoto();
-            }
-        });
-        images$.addEventListener('click', e => {
-            if (e.target.classList.contains('left-arrow')) {
-                prevPhoto();
-            }
-
-            if (e.target.classList.contains('right-arrow')) {
-                nextPhoto();
-            }
-        });
-        document.querySelector('.fa-close').addEventListener('click', closeLightbox);
-        images$.addEventListener('touchstart', e => {
-            touchStartPositionX = e.touches[0].pageX;
-        });
-        images$.addEventListener('touchmove', e => {
-            touchMovePositionX = e.touches[0].pageX;
-
-            touchPositionXDiff = touchMovePositionX - touchStartPositionX;
-
-            if (transformWrapperXAxis + touchPositionXDiff > 50) {
-                touchPositionXDiff = 50;
-            }
-            if (transformWrapperXAxis + touchPositionXDiff < -wrapperWidth + containerWidth - 50) {
-                touchPositionXDiff = -50;
-            }
-
-            transitionDurationWrapper = 0
-        });
-        images$.addEventListener('touchend', e => {
-            transformWrapperXAxis = transformWrapperXAxis + touchPositionXDiff;
-            const newIndex = Math.abs(Math.round(transformWrapperXAxis / containerWidth));
-
-            touchMovePositionX = 0;
-            touchStartPositionX = 0;
-            touchPositionXDiff = 0;
-
-            transitionDurationWrapper = 0.3;
-
-            goToPhoto(newIndex);
-        });
     });
 </script>
+
+<svelte:body on:keydown|preventDefault={onKeyDown}/>
+<svelte:window on:resize|preventDefault={onResize}/>
 
 <div class="lightbox"
      style="
      --container_width: {containerWidth}px;
      --wrapper_width: {wrapperWidth}px;
-     --thumbnails_wrapper_width: {thumbnailsWrapperWidth}px;
      --transform_wrapper_x_axis: {transformWrapperXAxis + touchPositionXDiff}px;
 ">
     <div class="top">
-        <Icon name="fa-solid fa-close" size="48"/>
+        <h2>{title}</h2>
+        <Icon name="fa-solid fa-close" size="48" on:click={closeLightbox}/>
     </div>
-    <div class="images">
-        <div class="arrow">
-            <Icon name="fa-solid fa-chevron-left left-arrow" size="48"/>
+    <div class="images" on:touchstart={galleryTouchStart} on:touchmove={galleryTouchMove} on:touchend={galleryTouchEnd}>
+        <div class="arrow" on:click={prevPhoto}>
+            {#if photoIndex > 0}
+                <Icon name="fa-solid fa-chevron-left left-arrow" size="48"/>
+            {/if}
         </div>
         <div class="images-container">
             <div class="wrapper" style="--transition_duration:{transitionDurationWrapper}s">
@@ -141,25 +138,31 @@
                 {/each}
             </div>
         </div>
-        <div class="arrow">
-            <Icon name="fa-solid fa-chevron-right right-arrow" size="48"/>
+        <div class="arrow" on:click={nextPhoto}>
+            {#if photoIndex < images.length - 1}
+                <Icon name="fa-solid fa-chevron-right right-arrow" size="48"/>
+            {/if}
         </div>
     </div>
     <div class="bottom">
-        <div class="thumbnails-container">
-            <div class="thumbnails">
+        <div class="thumbnails-container" bind:clientWidth={thumbnailsContainerWidth}>
+            {#if thumbnailsWidth > thumbnailsContainerWidth}
+                <div class="arrow" on:click={prevPhoto}>
+                    <Icon name="fa-solid fa-chevron-left left-arrow" size="48"/>
+                </div>
+            {/if}
+            <div class="thumbnails" bind:clientWidth={thumbnailsWidth}>
                 {#each images as image, index}
-                    {#if (index === photoIndex)}
-                        <div class="thumbnail active">
-                            <img src={image} alt=""/>
-                        </div>
-                    {:else}
-                        <div class="thumbnail" on:click={goToPhoto.bind(this, index)}>
-                            <img src={image} alt=""/>
-                        </div>
-                    {/if}
+                    <div class="thumbnail" class:active={index===photoIndex} on:click={goToPhoto.bind(this, index)}>
+                        <img src={image} alt=""/>
+                    </div>
                 {/each}
             </div>
+            {#if thumbnailsWidth > thumbnailsContainerWidth}
+                <div class="arrow" on:click={nextPhoto}>
+                    <Icon name="fa-solid fa-chevron-right right-arrow" size="48"/>
+                </div>
+            {/if}
         </div>
     </div>
 </div>
@@ -193,7 +196,8 @@
 
     .top {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
         height: 50px;
     }
 
@@ -207,11 +211,10 @@
         width: 100%;
         height: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .thumbnails {
-        width: var(--thumbnails_wrapper_width);
         display: flex;
         align-items: center;
         height: 100px;
