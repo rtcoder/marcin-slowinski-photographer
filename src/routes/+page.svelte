@@ -1,179 +1,88 @@
-<script>
-	import Lightbox from '$lib/Lightbox.svelte';
-
-	const galleries = [
-		{
-			name: 'Testowa nazwa galerii',
-			photos: [
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-			],
-		},
-		{
-			name: 'Testowa nazwa galerii',
-			photos: [
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-			],
-		},
-		{
-			name: 'Testowa nazwa galerii',
-			photos: [
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-			],
-		},
-		{
-			name: 'Testowa nazwa galerii',
-			photos: [
-				'/images/profile-small.jpg',
-				'/images/profile-small.jpg',
-			],
-		},
-	];
-	let lightboxDisplay = false;
-
-	let selectedGallery = null;
-	$:{
-		console.log({lightboxDisplay, selectedGallery});
-	}
-
-	function onClickGallery(idx) {
-		selectedGallery = galleries[idx];
-		lightboxDisplay = true;
-	}
-
-	function onCloseLightbox() {
-		lightboxDisplay = false;
-		selectedGallery = null;
-	}
-</script>
-
 <svelte:head>
-	<title>Portfolio</title>
+	<title>Marcin Słowiński - Fotograf</title>
 </svelte:head>
 
-<div class="categories">
-	<ul>
-		<li class="active">Wszystkie</li>
-		<li>Plener</li>
-		<li>Śluby</li>
-		<li>Portrety</li>
-		<li>Komunie</li>
-		<li>Chrzty</li>
-	</ul>
-</div>
+<script context="module" lang="ts">
+	export const prerender = true;
+	import Heading from '../lib/Heading.svelte';
+</script>
 
-<section class="photos">
-	{#each galleries as gallery, index}
-		<div class="photo" on:click={onClickGallery.bind(this, index)}>
-			<img src={gallery.photos[0]} alt=""/>
-			<p class="name">{gallery.name}</p>
-		</div>
-	{/each}
+<section id="top-section">
+	<div class="info">Marcin Słowiński - fotograf</div>
 </section>
 
-{#if lightboxDisplay}
-	<Lightbox
-			on:closeLightbox={onCloseLightbox}
-			lightboxDisplay={lightboxDisplay}
-			images={selectedGallery?.photos ?? []}
-			title={selectedGallery?.name ?? ''}/>
-{/if}
+<section>
+	<Heading>O mnie</Heading>
+	<p class="about-text">
+		Witaj! Jestem pasjonatem fotografii z wieloletnim doświadczeniem, specjalizującym się w różnych dziedzinach,
+		takich jak niezapomniane zdjęcia ślubne, ciepłe fotografie rodzinne oraz artystyczne zdjęcia okolicznościowe.
+		Moje podejście do fotografii opiera się na tworzeniu niepowtarzalnych momentów i uchwyceniu piękna w każdym
+		kadrze.
+		<br>
+		<br>
+		Mój szeroki wachlarz projektów w portfolio to rezultat mojej elastyczności oraz zdolności do dostosowywania się
+		do indywidualnych potrzeb klientów. Zawsze stawiam na perfekcję w mojej pracy, co sprawia, że nie przegapiam
+		żadnych detali i potrafię przenieść emocje na zdjęciach, które będą trwać przez lata.
+		<br>
+		<br>
+		Posiadam sprzęt i oprogramowanie najwyższej jakości, co gwarantuje wyjątkową jakość każdego zdjęcia. Ponadto,
+		jestem otwarty na współpracę i gotowy na wszelkie sugestie klientów, aby zagwarantować im zdjęcia spełniające
+		ich oczekiwania.
+		<br>
+		<br>
+		Moje portfolio to nie tylko zbiór prac, to opowieść o moim zobowiązaniu do dostarczania najwyższej jakości usług
+		fotograficznych i zadowolenia każdego klienta. Razem stworzymy niezapomniane wspomnienia. Zapraszam do kontaktu!
+	</p>
+</section>
 
 <style>
-	.categories {
-		background-color: #0f0f0f;
-		padding: 10px 0;
-		position: sticky;
-		width: 100%;
-		top: 60px;
-		box-shadow: 0 0 1px 0 var(--accent_color);
-		z-index: 1;
-	}
-
-	ul {
+	#top-section {
+		background-image: url('/images/bg.jpg');
+		background-size: auto 100%;
+		background-repeat: no-repeat;
+		height: calc(100vh - 80px);
 		display: flex;
+		justify-content: flex-end;
 		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
-
-	li {
-		cursor: pointer;
-		padding: 5px 10px;
-		margin: 0 5px;
-	}
-
-	li.active, li:hover {
-		color: var(--accent_color);
-	}
-
-	.photos {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		grid-gap: 20px 10px;
-		padding: 10px 15px;
-		width: 100%;
 		align-items: center;
 	}
 
-	.photo {
-		width: -webkit-fill-available;
-		aspect-ratio: 1/1;
-		justify-self: center;
-		padding: 5px;
-		cursor: pointer;
-		border-radius: 10px;
-		border: 2px solid #525252;
-		position: relative;
-		overflow: hidden;
+	.info {
+		padding-top: 20px;
+		width: 50%;
+		font-size: 35px;
+		font-weight: 100;
+		text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
+		color: #fff;
 	}
 
-	.photo:hover {
-		border-color: var(--accent_color);
+	.about-text {
+		padding: 50px;
+		line-height: 1.7;
+		letter-spacing: 1px;
 	}
 
-	.photo img {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-		transition: transform 0.2s ease-in;
+	@media (max-width: 769px) {
+		.info {
+			padding-top: 200px;
+		}
+
+		.about-text {
+			font-size: 22px;
+		}
 	}
-	.photo:hover img{
-		transform:scale(1.1);
-	}
-	.photo p.name {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		text-align: center;
-		font-size: 25px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background: rgba(0,0,0,0.5);
-		opacity: 0;
-		transition: opacity 0.2s ease-in;
-	}
-	.photo:hover p.name{
-		opacity: 1;
+
+	@media (max-width: 550px) {
+		.info {
+			padding-top: 200px;
+			text-align: center;
+			width: 100%;
+		}
+
+		.about-text {
+			font-size: 25px;
+			padding-left: 30px;
+			padding-right: 30px;
+		}
 	}
 </style>

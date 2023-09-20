@@ -23,10 +23,10 @@
 <nav>
     <ul class={menuState}>
         <li class:active={$page.url.pathname === '/'}>
-            <a sveltekit:prefetch href="/">Home</a>
+            <a sveltekit:prefetch href="/">O mnie</a>
         </li>
-        <li class:active={$page.url.pathname === '/about'}>
-            <a sveltekit:prefetch href="/about">O mnie</a>
+        <li class:active={$page.url.pathname === '/gallery'}>
+            <a sveltekit:prefetch href="/gallery">Galeria</a>
         </li>
         <li class:active={$page.url.pathname === '/contact'}>
             <a sveltekit:prefetch href="/contact">Kontakt</a>
