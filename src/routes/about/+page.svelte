@@ -32,7 +32,7 @@
 
 <style>
     #top-section {
-        background-image: url('images/bg.jpg');
+        background-image: url('/images/bg.jpg');
         background-size: auto 100%;
         background-repeat: no-repeat;
         height: calc(100vh - 80px);

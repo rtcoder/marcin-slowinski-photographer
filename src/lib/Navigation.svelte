@@ -22,22 +22,23 @@
 
 <nav>
     <ul class={menuState}>
-        <li class:active={$page.path === '/'}>
+        <li class:active={$page.url.pathname === '/'}>
             <a sveltekit:prefetch href="/">Home</a>
         </li>
-        <li class:active={$page.path === '/about'}>
+        <li class:active={$page.url.pathname === '/about'}>
             <a sveltekit:prefetch href="/about">O mnie</a>
         </li>
-        <li class:active={$page.path === '/contact'}>
+        <li class:active={$page.url.pathname === '/contact'}>
             <a sveltekit:prefetch href="/contact">Kontakt</a>
         </li>
     </ul>
-    <div class="hamburger {hamburgerState}"/>
+    <div class="hamburger {hamburgerState}"></div>
 </nav>
 
 <style>
     nav {
         position: relative;
+        z-index: 1;
     }
 
     .hamburger {

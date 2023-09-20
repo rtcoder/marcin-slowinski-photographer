@@ -39,7 +39,7 @@
         top: 0;
         background: var(--bg_color);
         box-shadow: 0 0 1px 0 #fff;
-        z-index: 1;
+        z-index: 2;
     }
 
     .left {

@@ -20,6 +20,7 @@
 		width: 100%;
 		margin: 0 auto;
 		min-height: calc(100vh - 145px);
+		padding-bottom: 20px;
 	}
 
 	@media (max-width: 640px) {
