@@ -14,19 +14,24 @@
 <section>
     <Heading>O mnie</Heading>
     <p class="about-text">
-        Jestem profesjonalnym fotografem z wieloletnim doświadczeniem w różnych dziedzinach fotografii,
-        takich jak zdjęcia ślubne, rodzinne i okolicznościowe. Moje portfolio jest pełne różnorodnych
-        projektów, które pokazują moją elastyczność i umiejętność dostosowywania się do różnych potrzeb
-        klientów.
-        <br/>
-        <br/>
-        Jestem specjalistą, który zawsze dąży do perfekcji w swojej pracy. Posiadam wysokiej jakości sprzęt
-        i oprogramowanie, dzięki czemu jestem w stanie uchwycić każdy detal i przenieść emocje na zdjęciach.
-        <br/>
-        <br/>
-        Jestem również otwarty na współpracę i wszelkie sugestie klientów, aby zapewnić im jak najlepsze
-        rezultaty. Moje portfolio jest żywym dowodem na to, że mogę zaoferować najwyższą jakość usług fotograficznych
-        i zapewnić zadowolenie każdego klienta.
+        Witaj! Jestem pasjonatem fotografii z wieloletnim doświadczeniem, specjalizującym się w różnych dziedzinach,
+        takich jak niezapomniane zdjęcia ślubne, ciepłe fotografie rodzinne oraz artystyczne zdjęcia okolicznościowe.
+        Moje podejście do fotografii opiera się na tworzeniu niepowtarzalnych momentów i uchwyceniu piękna w każdym
+        kadrze.
+        <br>
+        <br>
+        Mój szeroki wachlarz projektów w portfolio to rezultat mojej elastyczności oraz zdolności do dostosowywania się
+        do indywidualnych potrzeb klientów. Zawsze stawiam na perfekcję w mojej pracy, co sprawia, że nie przegapiam
+        żadnych detali i potrafię przenieść emocje na zdjęciach, które będą trwać przez lata.
+        <br>
+        <br>
+        Posiadam sprzęt i oprogramowanie najwyższej jakości, co gwarantuje wyjątkową jakość każdego zdjęcia. Ponadto,
+        jestem otwarty na współpracę i gotowy na wszelkie sugestie klientów, aby zagwarantować im zdjęcia spełniające
+        ich oczekiwania.
+        <br>
+        <br>
+        Moje portfolio to nie tylko zbiór prac, to opowieść o moim zobowiązaniu do dostarczania najwyższej jakości usług
+        fotograficznych i zadowolenia każdego klienta. Razem stworzymy niezapomniane wspomnienia. Zapraszam do kontaktu!
     </p>
 </section>
 
