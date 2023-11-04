@@ -12,19 +12,22 @@
     let containerWidth = 0;
     let wrapperWidth = 0;
     let transformWrapperXAxis = 0;
-    let transitionDurationWrapper = 0.3;
+    let transitionDurationWrapper = 0.2;
     let touchStartPositionX = 0;
     let touchMovePositionX = 0;
     let touchPositionXDiff = 0;
     let thumbnailsWidth;
     let thumbnailsContainerWidth;
+    $:{
+
+    }
 
     function closeLightbox() {
         dispatch('closeLightbox', {});
         lightboxDisplay = false;
         images = [];
         photoIndex = 0;
-        console.log(lightboxDisplay)
+        console.log(lightboxDisplay);
     }
 
     function onResize() {
@@ -34,19 +37,11 @@
     }
 
     function nextPhoto() {
-        photoIndex++;
-        if (photoIndex >= images.length - 1) {
-            photoIndex = images.length - 1;
-        }
-        onResize();
+        goToPhoto(photoIndex + 1);
     }
 
     function prevPhoto() {
-        photoIndex--;
-        if (photoIndex < 0) {
-            photoIndex = 0;
-        }
-        onResize();
+        goToPhoto(photoIndex - 1);
     }
 
     function goToPhoto(index) {
@@ -85,7 +80,7 @@
         touchStartPositionX = 0;
         touchPositionXDiff = 0;
 
-        transitionDurationWrapper = 0.3;
+        transitionDurationWrapper = 0.2;
 
         goToPhoto(newIndex);
     }
@@ -145,12 +140,7 @@
         </div>
     </div>
     <div class="bottom">
-        <div class="thumbnails-container" bind:clientWidth={thumbnailsContainerWidth}>
-            {#if thumbnailsWidth > thumbnailsContainerWidth}
-                <div class="arrow" on:click={prevPhoto}>
-                    <Icon name="fa-solid fa-chevron-left left-arrow" size="48"/>
-                </div>
-            {/if}
+        <div class="thumbnails-container" bind:clientWidth={thumbnailsContainerWidth}  style="--photoIndex:{photoIndex}">
             <div class="thumbnails" bind:clientWidth={thumbnailsWidth}>
                 {#each images as image, index}
                     <div class="thumbnail" class:active={index===photoIndex} on:click={goToPhoto.bind(this, index)}>
@@ -158,11 +148,6 @@
                     </div>
                 {/each}
             </div>
-            {#if thumbnailsWidth > thumbnailsContainerWidth}
-                <div class="arrow" on:click={nextPhoto}>
-                    <Icon name="fa-solid fa-chevron-right right-arrow" size="48"/>
-                </div>
-            {/if}
         </div>
     </div>
 </div>
@@ -207,17 +192,22 @@
     }
 
     .thumbnails-container {
+        --photoIndex:0;
         overflow: hidden;
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: flex-start;
+        position: relative;
     }
 
     .thumbnails {
         display: flex;
         align-items: center;
         height: 100px;
+        position: absolute;
+        transition: left 0.2s ease-in;
+        left: calc(50% - var(--photoIndex) * 100px);
     }
 
     .thumbnail {

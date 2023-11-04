@@ -25,6 +25,16 @@
                 '/images/profile-small.jpg',
                 '/images/profile-small.jpg',
                 '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
+                '/images/profile-small.jpg',
             ],
         },
         {
@@ -155,9 +165,11 @@
         object-fit: contain;
         transition: transform 0.2s ease-in;
     }
-    .photo:hover img{
-        transform:scale(1.1);
+
+    .photo:hover img {
+        transform: scale(1.1);
     }
+
     .photo p.name {
         position: absolute;
         width: 100%;
@@ -169,11 +181,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         opacity: 0;
         transition: opacity 0.2s ease-in;
     }
-    .photo:hover p.name{
+
+    .photo:hover p.name {
         opacity: 1;
     }
 </style>

@@ -1,6 +1,6 @@
 <script lang="ts">
+    import Navigation from '$lib/Navigation.svelte';
     import {onMount} from 'svelte';
-    import Navigation from "$lib/Navigation.svelte";
 
     let classname = '';
 
