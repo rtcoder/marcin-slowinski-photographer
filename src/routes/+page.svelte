@@ -40,7 +40,8 @@
         background-image: url('/images/bg.jpg');
         background-size: auto 100%;
         background-repeat: no-repeat;
-        height: calc(100vh - 80px);
+        background-color: #000000;
+        height: calc(100vh - var(--header-height));
         display: flex;
         justify-content: flex-end;
         flex-direction: row;

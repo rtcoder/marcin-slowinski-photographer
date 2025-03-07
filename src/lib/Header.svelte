@@ -29,7 +29,7 @@
 <style>
     header {
         width: 100%;
-        height: 60px;
+        height: var(--header-height);
         display: flex;
         flex-direction: row;
         justify-content: space-between;

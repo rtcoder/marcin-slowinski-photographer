@@ -5,6 +5,7 @@
     --bg_color: #161616;
     --font_color: #cecece;
     --accent_color: #cc9c00;
+    --header-height:60px;
 }
 
 * {
