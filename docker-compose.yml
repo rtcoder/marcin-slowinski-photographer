@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  slowinski:
+    build: .
+    ports:
+      - "${PORT:-8080}:80"
+    restart: unless-stopped
+    env_file:
+      - .env
